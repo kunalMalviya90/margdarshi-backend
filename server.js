@@ -4,6 +4,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import chatRoutes from './routes/chat.js';
+import cookieParser from "cookie-parser";
+
+
+app.use(cookieParser());
 
 // Load environment variables
 dotenv.config();
@@ -12,7 +16,18 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://margdarshi-frontend.vercel.app", // apna actual frontend URL
+      "http://localhost:5173" // local dev
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

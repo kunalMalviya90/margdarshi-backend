@@ -125,17 +125,24 @@ export const login = async (req, res) => {
         // Generate token
         const token = generateToken(user);
 
-        res.json({
-            success: true,
-            message: 'Login successful',
-            token,
-            user: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                age: user.age
-            }
-        });
+       res
+  .cookie("token", token, {
+    httpOnly: true,
+    secure: true,        // Render + Vercel ke liye REQUIRED
+    sameSite: "none",    // Cross-domain ke liye REQUIRED
+    maxAge: 7 * 24 * 60 * 60 * 1000
+  })
+  .json({
+    success: true,
+    message: "Login successful",
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      age: user.age
+    }
+  });
+
 
     } catch (error) {
         console.error('Login error:', error);
