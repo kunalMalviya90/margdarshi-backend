@@ -113,7 +113,7 @@ import cookieParser from 'cookie-parser';
 
 import authRoutes from './routes/auth.js';
 import chatRoutes from './routes/chat.js';
-
+ 
 // Load environment variables
 dotenv.config();
 
