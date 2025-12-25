@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 // MongoDB connection
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/margdarshi', {
+        await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://malviyakunal90_db_user:eN7QtOhttsPHscH1@cluster0.dfx70l2.mongodb.net/?appName=Cluster0', {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
